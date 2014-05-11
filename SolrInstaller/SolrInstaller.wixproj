@@ -36,6 +36,12 @@
   <ItemGroup>
     <Content Include="Config.wxi" />
   </ItemGroup>
+  <ItemGroup>
+    <WixExtension Include="WixUtilExtension">
+      <HintPath>$(WixExtDir)\WixUtilExtension.dll</HintPath>
+      <Name>WixUtilExtension</Name>
+    </WixExtension>
+  </ItemGroup>
   <Import Project="$(WixTargetsPath)" />
   <PropertyGroup>
     <PreBuildEvent>"C:\Program Files (x86)\WiX Toolset v3.8\bin\heat.exe" dir "$(ProjectDir)solr" -dr INSTALLFOLDER -ag -scom -sfrag -suid -srd -nologo -var var.SolrSrc -cg cgSolrGroup -o "$(ProjectDir)solr.wxs"</PreBuildEvent>

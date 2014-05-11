@@ -12,6 +12,11 @@
       <ComponentRef Id="prunsrv.exe"/>
       <ComponentRef Id="cSolrService"/>
 		</Feature>
+  
+    <InstallExecuteSequence>
+      <Custom Action="caServiceRegister_Cmd" After="CostFinalize" />
+      <Custom Action="caServiceRegister" After="InstallFiles" Overridable="yes">NOT Installed</Custom>
+    </InstallExecuteSequence>
 	</Product>
 
 	<Fragment>
@@ -22,11 +27,17 @@
 		</Directory>
 	</Fragment>
 
+  <!-- Service registration and management -->
   <Fragment>
+    <CustomAction Id="caServiceRegister_Cmd" Property="caServiceRegister" Execute="immediate"
+                  Value="&quot;[#install.bat]&quot;" />
+    <CustomAction Id="caServiceRegister" BinaryKey="WixCA" DllEntry="CAQuietExec"
+                  Execute="deferred" Return="check" Impersonate="no" />
+                  
     <DirectoryRef Id="INSTALLFOLDER">
       <Component Id="cSolrService" Guid="ff9c28e4-f416-49bd-bf93-372d3558a1b0">
         <CreateFolder/>
-        <ServiceControl Id="scSolrService" Name="SolrService" Stop="both" Remove="uninstall"/>
+        <ServiceControl Id="scSolrService" Name="SolrService" Start="install" Stop="both" Remove="uninstall"/>
       </Component>
     </DirectoryRef>
   </Fragment>
