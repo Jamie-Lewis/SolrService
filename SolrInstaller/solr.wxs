@@ -1,0 +1,371 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="INSTALLFOLDER">
+            <Component Id="install.bat" Guid="*">
+                <File Id="install.bat" KeyPath="yes" Source="$(var.SolrSrc)\install.bat" />
+            </Component>
+            <Component Id="prunmgr.exe" Guid="*">
+                <File Id="prunmgr.exe" KeyPath="yes" Source="$(var.SolrSrc)\prunmgr.exe" />
+            </Component>
+            <Component Id="prunsrv_32.exe" Guid="*">
+                <File Id="prunsrv_32.exe" KeyPath="yes" Source="$(var.SolrSrc)\prunsrv_32.exe" />
+            </Component>
+            <Component Id="prunsrv_64.exe" Guid="*">
+                <File Id="prunsrv_64.exe" KeyPath="yes" Source="$(var.SolrSrc)\prunsrv_64.exe" />
+            </Component>
+            <Component Id="README.txt" Guid="*">
+                <File Id="README.txt" KeyPath="yes" Source="$(var.SolrSrc)\README.txt" />
+            </Component>
+            <Component Id="start.jar" Guid="*">
+                <File Id="start.jar" KeyPath="yes" Source="$(var.SolrSrc)\start.jar" />
+            </Component>
+            <Directory Id="contexts" Name="contexts">
+                <Component Id="solr_jetty_context.xml" Guid="*">
+                    <File Id="solr_jetty_context.xml" KeyPath="yes" Source="$(var.SolrSrc)\contexts\solr-jetty-context.xml" />
+                </Component>
+            </Directory>
+            <Directory Id="etc" Name="etc">
+                <Component Id="create_solrtest.keystore.sh" Guid="*">
+                    <File Id="create_solrtest.keystore.sh" KeyPath="yes" Source="$(var.SolrSrc)\etc\create-solrtest.keystore.sh" />
+                </Component>
+                <Component Id="jetty.xml" Guid="*">
+                    <File Id="jetty.xml" KeyPath="yes" Source="$(var.SolrSrc)\etc\jetty.xml" />
+                </Component>
+                <Component Id="solrtest.keystore" Guid="*">
+                    <File Id="solrtest.keystore" KeyPath="yes" Source="$(var.SolrSrc)\etc\solrtest.keystore" />
+                </Component>
+                <Component Id="webdefault.xml" Guid="*">
+                    <File Id="webdefault.xml" KeyPath="yes" Source="$(var.SolrSrc)\etc\webdefault.xml" />
+                </Component>
+            </Directory>
+            <Directory Id="lib" Name="lib">
+                <Component Id="jetty_continuation_8.1.10.v20130312.jar" Guid="*">
+                    <File Id="jetty_continuation_8.1.10.v20130312.jar" KeyPath="yes" Source="$(var.SolrSrc)\lib\jetty-continuation-8.1.10.v20130312.jar" />
+                </Component>
+                <Component Id="jetty_deploy_8.1.10.v20130312.jar" Guid="*">
+                    <File Id="jetty_deploy_8.1.10.v20130312.jar" KeyPath="yes" Source="$(var.SolrSrc)\lib\jetty-deploy-8.1.10.v20130312.jar" />
+                </Component>
+                <Component Id="jetty_http_8.1.10.v20130312.jar" Guid="*">
+                    <File Id="jetty_http_8.1.10.v20130312.jar" KeyPath="yes" Source="$(var.SolrSrc)\lib\jetty-http-8.1.10.v20130312.jar" />
+                </Component>
+                <Component Id="jetty_io_8.1.10.v20130312.jar" Guid="*">
+                    <File Id="jetty_io_8.1.10.v20130312.jar" KeyPath="yes" Source="$(var.SolrSrc)\lib\jetty-io-8.1.10.v20130312.jar" />
+                </Component>
+                <Component Id="jetty_jmx_8.1.10.v20130312.jar" Guid="*">
+                    <File Id="jetty_jmx_8.1.10.v20130312.jar" KeyPath="yes" Source="$(var.SolrSrc)\lib\jetty-jmx-8.1.10.v20130312.jar" />
+                </Component>
+                <Component Id="jetty_security_8.1.10.v20130312.jar" Guid="*">
+                    <File Id="jetty_security_8.1.10.v20130312.jar" KeyPath="yes" Source="$(var.SolrSrc)\lib\jetty-security-8.1.10.v20130312.jar" />
+                </Component>
+                <Component Id="jetty_server_8.1.10.v20130312.jar" Guid="*">
+                    <File Id="jetty_server_8.1.10.v20130312.jar" KeyPath="yes" Source="$(var.SolrSrc)\lib\jetty-server-8.1.10.v20130312.jar" />
+                </Component>
+                <Component Id="jetty_servlet_8.1.10.v20130312.jar" Guid="*">
+                    <File Id="jetty_servlet_8.1.10.v20130312.jar" KeyPath="yes" Source="$(var.SolrSrc)\lib\jetty-servlet-8.1.10.v20130312.jar" />
+                </Component>
+                <Component Id="jetty_util_8.1.10.v20130312.jar" Guid="*">
+                    <File Id="jetty_util_8.1.10.v20130312.jar" KeyPath="yes" Source="$(var.SolrSrc)\lib\jetty-util-8.1.10.v20130312.jar" />
+                </Component>
+                <Component Id="jetty_webapp_8.1.10.v20130312.jar" Guid="*">
+                    <File Id="jetty_webapp_8.1.10.v20130312.jar" KeyPath="yes" Source="$(var.SolrSrc)\lib\jetty-webapp-8.1.10.v20130312.jar" />
+                </Component>
+                <Component Id="jetty_xml_8.1.10.v20130312.jar" Guid="*">
+                    <File Id="jetty_xml_8.1.10.v20130312.jar" KeyPath="yes" Source="$(var.SolrSrc)\lib\jetty-xml-8.1.10.v20130312.jar" />
+                </Component>
+                <Component Id="servlet_api_3.0.jar" Guid="*">
+                    <File Id="servlet_api_3.0.jar" KeyPath="yes" Source="$(var.SolrSrc)\lib\servlet-api-3.0.jar" />
+                </Component>
+                <Directory Id="ext" Name="ext">
+                    <Component Id="jcl_over_slf4j_1.7.6.jar" Guid="*">
+                        <File Id="jcl_over_slf4j_1.7.6.jar" KeyPath="yes" Source="$(var.SolrSrc)\lib\ext\jcl-over-slf4j-1.7.6.jar" />
+                    </Component>
+                    <Component Id="jul_to_slf4j_1.7.6.jar" Guid="*">
+                        <File Id="jul_to_slf4j_1.7.6.jar" KeyPath="yes" Source="$(var.SolrSrc)\lib\ext\jul-to-slf4j-1.7.6.jar" />
+                    </Component>
+                    <Component Id="log4j_1.2.16.jar" Guid="*">
+                        <File Id="log4j_1.2.16.jar" KeyPath="yes" Source="$(var.SolrSrc)\lib\ext\log4j-1.2.16.jar" />
+                    </Component>
+                    <Component Id="slf4j_api_1.7.6.jar" Guid="*">
+                        <File Id="slf4j_api_1.7.6.jar" KeyPath="yes" Source="$(var.SolrSrc)\lib\ext\slf4j-api-1.7.6.jar" />
+                    </Component>
+                    <Component Id="slf4j_log4j12_1.7.6.jar" Guid="*">
+                        <File Id="slf4j_log4j12_1.7.6.jar" KeyPath="yes" Source="$(var.SolrSrc)\lib\ext\slf4j-log4j12-1.7.6.jar" />
+                    </Component>
+                </Directory>
+            </Directory>
+            <Directory Id="resources" Name="resources">
+                <Component Id="log4j.properties" Guid="*">
+                    <File Id="log4j.properties" KeyPath="yes" Source="$(var.SolrSrc)\resources\log4j.properties" />
+                </Component>
+            </Directory>
+            <Directory Id="solr" Name="solr">
+                <Component Id="_.DS_Store" Guid="*">
+                    <File Id="_.DS_Store" KeyPath="yes" Source="$(var.SolrSrc)\solr\.DS_Store" />
+                </Component>
+                <Directory Id="collection1" Name="collection1">
+                    <Component Id="_.DS_Store_1" Guid="*">
+                        <File Id="_.DS_Store_1" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\.DS_Store" />
+                    </Component>
+                    <Directory Id="conf" Name="conf">
+                        <Component Id="_.DS_Store_2" Guid="*">
+                            <File Id="_.DS_Store_2" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\.DS_Store" />
+                        </Component>
+                        <Component Id="currency.xml" Guid="*">
+                            <File Id="currency.xml" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\currency.xml" />
+                        </Component>
+                        <Component Id="elevate.xml" Guid="*">
+                            <File Id="elevate.xml" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\elevate.xml" />
+                        </Component>
+                        <Component Id="mapping_FoldToASCII.txt" Guid="*">
+                            <File Id="mapping_FoldToASCII.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\mapping-FoldToASCII.txt" />
+                        </Component>
+                        <Component Id="mapping_ISOLatin1Accent.txt" Guid="*">
+                            <File Id="mapping_ISOLatin1Accent.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\mapping-ISOLatin1Accent.txt" />
+                        </Component>
+                        <Component Id="protwords.txt" Guid="*">
+                            <File Id="protwords.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\protwords.txt" />
+                        </Component>
+                        <Component Id="schema.xml" Guid="*">
+                            <File Id="schema.xml" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\schema.xml" />
+                        </Component>
+                        <Component Id="scripts.conf" Guid="*">
+                            <File Id="scripts.conf" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\scripts.conf" />
+                        </Component>
+                        <Component Id="solrconfig.xml" Guid="*">
+                            <File Id="solrconfig.xml" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\solrconfig.xml" />
+                        </Component>
+                        <Component Id="spellings.txt" Guid="*">
+                            <File Id="spellings.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\spellings.txt" />
+                        </Component>
+                        <Component Id="stopwords.txt" Guid="*">
+                            <File Id="stopwords.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\stopwords.txt" />
+                        </Component>
+                        <Component Id="synonyms.txt" Guid="*">
+                            <File Id="synonyms.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\synonyms.txt" />
+                        </Component>
+                        <Component Id="_schema_analysis_stopwords_english.json" Guid="*">
+                            <File Id="_schema_analysis_stopwords_english.json" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\_schema_analysis_stopwords_english.json" />
+                        </Component>
+                        <Component Id="_schema_analysis_synonyms_english.json" Guid="*">
+                            <File Id="_schema_analysis_synonyms_english.json" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\_schema_analysis_synonyms_english.json" />
+                        </Component>
+                        <Directory Id="lang" Name="lang">
+                            <Component Id="contractions_ca.txt" Guid="*">
+                                <File Id="contractions_ca.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\contractions_ca.txt" />
+                            </Component>
+                            <Component Id="contractions_fr.txt" Guid="*">
+                                <File Id="contractions_fr.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\contractions_fr.txt" />
+                            </Component>
+                            <Component Id="contractions_ga.txt" Guid="*">
+                                <File Id="contractions_ga.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\contractions_ga.txt" />
+                            </Component>
+                            <Component Id="contractions_it.txt" Guid="*">
+                                <File Id="contractions_it.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\contractions_it.txt" />
+                            </Component>
+                            <Component Id="hyphenations_ga.txt" Guid="*">
+                                <File Id="hyphenations_ga.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\hyphenations_ga.txt" />
+                            </Component>
+                            <Component Id="stemdict_nl.txt" Guid="*">
+                                <File Id="stemdict_nl.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\stemdict_nl.txt" />
+                            </Component>
+                            <Component Id="stoptags_ja.txt" Guid="*">
+                                <File Id="stoptags_ja.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\stoptags_ja.txt" />
+                            </Component>
+                            <Component Id="stopwords_ar.txt" Guid="*">
+                                <File Id="stopwords_ar.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\stopwords_ar.txt" />
+                            </Component>
+                            <Component Id="stopwords_bg.txt" Guid="*">
+                                <File Id="stopwords_bg.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\stopwords_bg.txt" />
+                            </Component>
+                            <Component Id="stopwords_ca.txt" Guid="*">
+                                <File Id="stopwords_ca.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\stopwords_ca.txt" />
+                            </Component>
+                            <Component Id="stopwords_ckb.txt" Guid="*">
+                                <File Id="stopwords_ckb.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\stopwords_ckb.txt" />
+                            </Component>
+                            <Component Id="stopwords_cz.txt" Guid="*">
+                                <File Id="stopwords_cz.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\stopwords_cz.txt" />
+                            </Component>
+                            <Component Id="stopwords_da.txt" Guid="*">
+                                <File Id="stopwords_da.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\stopwords_da.txt" />
+                            </Component>
+                            <Component Id="stopwords_de.txt" Guid="*">
+                                <File Id="stopwords_de.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\stopwords_de.txt" />
+                            </Component>
+                            <Component Id="stopwords_el.txt" Guid="*">
+                                <File Id="stopwords_el.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\stopwords_el.txt" />
+                            </Component>
+                            <Component Id="stopwords_en.txt" Guid="*">
+                                <File Id="stopwords_en.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\stopwords_en.txt" />
+                            </Component>
+                            <Component Id="stopwords_es.txt" Guid="*">
+                                <File Id="stopwords_es.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\stopwords_es.txt" />
+                            </Component>
+                            <Component Id="stopwords_eu.txt" Guid="*">
+                                <File Id="stopwords_eu.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\stopwords_eu.txt" />
+                            </Component>
+                            <Component Id="stopwords_fa.txt" Guid="*">
+                                <File Id="stopwords_fa.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\stopwords_fa.txt" />
+                            </Component>
+                            <Component Id="stopwords_fi.txt" Guid="*">
+                                <File Id="stopwords_fi.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\stopwords_fi.txt" />
+                            </Component>
+                            <Component Id="stopwords_fr.txt" Guid="*">
+                                <File Id="stopwords_fr.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\stopwords_fr.txt" />
+                            </Component>
+                            <Component Id="stopwords_ga.txt" Guid="*">
+                                <File Id="stopwords_ga.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\stopwords_ga.txt" />
+                            </Component>
+                            <Component Id="stopwords_gl.txt" Guid="*">
+                                <File Id="stopwords_gl.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\stopwords_gl.txt" />
+                            </Component>
+                            <Component Id="stopwords_hi.txt" Guid="*">
+                                <File Id="stopwords_hi.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\stopwords_hi.txt" />
+                            </Component>
+                            <Component Id="stopwords_hu.txt" Guid="*">
+                                <File Id="stopwords_hu.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\stopwords_hu.txt" />
+                            </Component>
+                            <Component Id="stopwords_hy.txt" Guid="*">
+                                <File Id="stopwords_hy.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\stopwords_hy.txt" />
+                            </Component>
+                            <Component Id="stopwords_id.txt" Guid="*">
+                                <File Id="stopwords_id.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\stopwords_id.txt" />
+                            </Component>
+                            <Component Id="stopwords_it.txt" Guid="*">
+                                <File Id="stopwords_it.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\stopwords_it.txt" />
+                            </Component>
+                            <Component Id="stopwords_ja.txt" Guid="*">
+                                <File Id="stopwords_ja.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\stopwords_ja.txt" />
+                            </Component>
+                            <Component Id="stopwords_lv.txt" Guid="*">
+                                <File Id="stopwords_lv.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\stopwords_lv.txt" />
+                            </Component>
+                            <Component Id="stopwords_nl.txt" Guid="*">
+                                <File Id="stopwords_nl.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\stopwords_nl.txt" />
+                            </Component>
+                            <Component Id="stopwords_no.txt" Guid="*">
+                                <File Id="stopwords_no.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\stopwords_no.txt" />
+                            </Component>
+                            <Component Id="stopwords_pt.txt" Guid="*">
+                                <File Id="stopwords_pt.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\stopwords_pt.txt" />
+                            </Component>
+                            <Component Id="stopwords_ro.txt" Guid="*">
+                                <File Id="stopwords_ro.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\stopwords_ro.txt" />
+                            </Component>
+                            <Component Id="stopwords_ru.txt" Guid="*">
+                                <File Id="stopwords_ru.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\stopwords_ru.txt" />
+                            </Component>
+                            <Component Id="stopwords_sv.txt" Guid="*">
+                                <File Id="stopwords_sv.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\stopwords_sv.txt" />
+                            </Component>
+                            <Component Id="stopwords_th.txt" Guid="*">
+                                <File Id="stopwords_th.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\stopwords_th.txt" />
+                            </Component>
+                            <Component Id="stopwords_tr.txt" Guid="*">
+                                <File Id="stopwords_tr.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\stopwords_tr.txt" />
+                            </Component>
+                            <Component Id="userdict_ja.txt" Guid="*">
+                                <File Id="userdict_ja.txt" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\lang\userdict_ja.txt" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                </Directory>
+            </Directory>
+            <Directory Id="webapps" Name="webapps">
+                <Component Id="solr.war" Guid="*">
+                    <File Id="solr.war" KeyPath="yes" Source="$(var.SolrSrc)\webapps\solr.war" />
+                </Component>
+            </Directory>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="cgSolrGroup">
+            <ComponentRef Id="install.bat" />
+            <ComponentRef Id="prunmgr.exe" />
+            <ComponentRef Id="prunsrv_32.exe" />
+            <ComponentRef Id="prunsrv_64.exe" />
+            <ComponentRef Id="README.txt" />
+            <ComponentRef Id="start.jar" />
+            <ComponentRef Id="solr_jetty_context.xml" />
+            <ComponentRef Id="create_solrtest.keystore.sh" />
+            <ComponentRef Id="jetty.xml" />
+            <ComponentRef Id="solrtest.keystore" />
+            <ComponentRef Id="webdefault.xml" />
+            <ComponentRef Id="jetty_continuation_8.1.10.v20130312.jar" />
+            <ComponentRef Id="jetty_deploy_8.1.10.v20130312.jar" />
+            <ComponentRef Id="jetty_http_8.1.10.v20130312.jar" />
+            <ComponentRef Id="jetty_io_8.1.10.v20130312.jar" />
+            <ComponentRef Id="jetty_jmx_8.1.10.v20130312.jar" />
+            <ComponentRef Id="jetty_security_8.1.10.v20130312.jar" />
+            <ComponentRef Id="jetty_server_8.1.10.v20130312.jar" />
+            <ComponentRef Id="jetty_servlet_8.1.10.v20130312.jar" />
+            <ComponentRef Id="jetty_util_8.1.10.v20130312.jar" />
+            <ComponentRef Id="jetty_webapp_8.1.10.v20130312.jar" />
+            <ComponentRef Id="jetty_xml_8.1.10.v20130312.jar" />
+            <ComponentRef Id="servlet_api_3.0.jar" />
+            <ComponentRef Id="jcl_over_slf4j_1.7.6.jar" />
+            <ComponentRef Id="jul_to_slf4j_1.7.6.jar" />
+            <ComponentRef Id="log4j_1.2.16.jar" />
+            <ComponentRef Id="slf4j_api_1.7.6.jar" />
+            <ComponentRef Id="slf4j_log4j12_1.7.6.jar" />
+            <ComponentRef Id="log4j.properties" />
+            <ComponentRef Id="_.DS_Store" />
+            <ComponentRef Id="_.DS_Store_1" />
+            <ComponentRef Id="_.DS_Store_2" />
+            <ComponentRef Id="currency.xml" />
+            <ComponentRef Id="elevate.xml" />
+            <ComponentRef Id="mapping_FoldToASCII.txt" />
+            <ComponentRef Id="mapping_ISOLatin1Accent.txt" />
+            <ComponentRef Id="protwords.txt" />
+            <ComponentRef Id="schema.xml" />
+            <ComponentRef Id="scripts.conf" />
+            <ComponentRef Id="solrconfig.xml" />
+            <ComponentRef Id="spellings.txt" />
+            <ComponentRef Id="stopwords.txt" />
+            <ComponentRef Id="synonyms.txt" />
+            <ComponentRef Id="_schema_analysis_stopwords_english.json" />
+            <ComponentRef Id="_schema_analysis_synonyms_english.json" />
+            <ComponentRef Id="contractions_ca.txt" />
+            <ComponentRef Id="contractions_fr.txt" />
+            <ComponentRef Id="contractions_ga.txt" />
+            <ComponentRef Id="contractions_it.txt" />
+            <ComponentRef Id="hyphenations_ga.txt" />
+            <ComponentRef Id="stemdict_nl.txt" />
+            <ComponentRef Id="stoptags_ja.txt" />
+            <ComponentRef Id="stopwords_ar.txt" />
+            <ComponentRef Id="stopwords_bg.txt" />
+            <ComponentRef Id="stopwords_ca.txt" />
+            <ComponentRef Id="stopwords_ckb.txt" />
+            <ComponentRef Id="stopwords_cz.txt" />
+            <ComponentRef Id="stopwords_da.txt" />
+            <ComponentRef Id="stopwords_de.txt" />
+            <ComponentRef Id="stopwords_el.txt" />
+            <ComponentRef Id="stopwords_en.txt" />
+            <ComponentRef Id="stopwords_es.txt" />
+            <ComponentRef Id="stopwords_eu.txt" />
+            <ComponentRef Id="stopwords_fa.txt" />
+            <ComponentRef Id="stopwords_fi.txt" />
+            <ComponentRef Id="stopwords_fr.txt" />
+            <ComponentRef Id="stopwords_ga.txt" />
+            <ComponentRef Id="stopwords_gl.txt" />
+            <ComponentRef Id="stopwords_hi.txt" />
+            <ComponentRef Id="stopwords_hu.txt" />
+            <ComponentRef Id="stopwords_hy.txt" />
+            <ComponentRef Id="stopwords_id.txt" />
+            <ComponentRef Id="stopwords_it.txt" />
+            <ComponentRef Id="stopwords_ja.txt" />
+            <ComponentRef Id="stopwords_lv.txt" />
+            <ComponentRef Id="stopwords_nl.txt" />
+            <ComponentRef Id="stopwords_no.txt" />
+            <ComponentRef Id="stopwords_pt.txt" />
+            <ComponentRef Id="stopwords_ro.txt" />
+            <ComponentRef Id="stopwords_ru.txt" />
+            <ComponentRef Id="stopwords_sv.txt" />
+            <ComponentRef Id="stopwords_th.txt" />
+            <ComponentRef Id="stopwords_tr.txt" />
+            <ComponentRef Id="userdict_ja.txt" />
+            <ComponentRef Id="solr.war" />
+        </ComponentGroup>
+    </Fragment>
+</Wix>

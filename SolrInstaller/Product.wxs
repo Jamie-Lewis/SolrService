@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include $(sys.CURRENTDIR)\Config.wxi?>
+	<Product Id="*" Name="$(var.ProductName)" Language="1033" Version="1.0.0.0" Manufacturer="Vetigraph" UpgradeCode="0f9067ac-2cb0-4090-9275-c69d8ed4e6de">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" InstallPrivileges="elevated" Description="$(var.ProductName)"/>
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab="yes"/>
+
+		<Feature Id="ProductFeature" Title="SolrInstaller" Level="1">
+			<ComponentGroupRef Id="cgSolrGroup" />
+      <ComponentRef Id="prunsrv.exe"/>
+		</Feature>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="$(var.PlatformProgramFilesFolder)">
+				<Directory Id="INSTALLFOLDER" Name="Solr" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+    <DirectoryRef Id="INSTALLFOLDER">
+      <?if $(var.Platform) = x64 ?>
+        <Component Id="prunsrv.exe" Guid="64e6274d-dd2c-46bc-8a06-397b99c4fac3" Win64="yes">
+          <File Id="prunsrv.exe" Name="prunsrv.exe" KeyPath="yes" Source="$(var.SolrSrc)\prunsrv_64.exe" />
+        </Component>
+      <?else ?>
+        <Component Id="prunsrv.exe" Guid="32e6274d-dd2c-46bc-8a06-397b99c4fac3">
+          <File Id="prunsrv.exe" Name="prunsrv.exe" KeyPath="yes" Source="$(var.SolrSrc)\prunsrv_32.exe" />
+        </Component>
+      <?endif ?>
+    </DirectoryRef>
+	</Fragment>
+</Wix>
+
+
+<!--
+  <CustomAction Id="pgctlRegister_Cmd" Property="pgctlRegister" Execute="immediate"
+                  Value="&quot;[#pg_ctl.exe]&quot; register -N StylePackServer -D &quot;[DATAFOLDER]&quot;" />
+    <CustomAction Id="pgctlRegister" BinaryKey="WixCA" DllEntry="CAQuietExec"
+                  Execute="deferred" Return="check" Impersonate="no" />
+
+    <Binary Id="initdbDLL" SourceFile="$(var.CustomInitDBAction.TargetDir)$(var.CustomInitDBAction.TargetName).CA.dll" />
+
+    <CustomAction Id="CheckDataFolderAction" BinaryKey="initdbDLL" DllEntry="CheckForDataDirectory"
+                  Execute="immediate" Return="ignore" Impersonate="yes" />
+
+    <InstallExecuteSequence>
+      <Custom Action="InitDBAction_Cmd" After="CostFinalize"/>
+      <Custom Action="pgctlRegister_Cmd" After="CostFinalize" />
+      <Custom Action="CheckDataFolderAction" After="CostFinalize"/>
+
+      <Custom Action="InitDBAction" After="InstallFiles" Overridable="yes">
+        NOT Installed AND CREATEDATABASE
+      </Custom>
+      <Custom Action="pgctlRegister" After="InitDBAction" Overridable="yes">NOT Installed</Custom>
+
+    </InstallExecuteSequence>
+-->
