@@ -1,15 +1,22 @@
 @echo off
+
+set DATAPATH=%~dp0
+IF %DATAPATH:~-1%==\ SET DATAPATH=%DATAPATH:~0,-1%
+
+echo Setting jetty base to match  %DATAPATH%
+
 set SERVICE_NAME=SolrService
-set JETTY_HOME=C:\example
-set JETTY_BASE=C:\example
+set JETTY_HOME=%DATAPATH%
+set JETTY_BASE=%DATAPATH%
 set STOPKEY=secret
 set STOPPORT=50001
  
-set PR_INSTALL=C:\example\prunsrv.exe
+set PR_INSTALL=%DATAPATH%\SolrService.exe
  
+
 @REM Service Log Configuration
 set PR_LOGPREFIX=%SERVICE_NAME%
-set PR_LOGPATH=C:\example\logs
+set PR_LOGPATH=%DATAPATH%\logs
 set PR_STDOUTPUT=auto
 set PR_STDERROR=auto
 set PR_LOGLEVEL=Debug
@@ -22,7 +29,7 @@ set PR_CLASSPATH=%JETTY_HOME%\start.jar;%JAVA_HOME%\lib\tools.jar
 set PR_JVMMS=128
 set PR_JVMMX=512
 set PR_JVMSS=4000
-set PR_JVMOPTIONS=-Duser.dir="%JETTY_BASE%";-Djava.io.tmpdir="C:\example\temp";-Djetty.home="%JETTY_HOME%";-Djetty.base="%JETTY_BASE%"
+set PR_JVMOPTIONS=-Duser.dir="%JETTY_BASE%";-Djava.io.tmpdir="%DATAPATH%\temp";-Djetty.home="%JETTY_HOME%";-Djetty.base="%JETTY_BASE%"
 @REM Startup Configuration
 set JETTY_START_CLASS=org.eclipse.jetty.start.Main
  
@@ -36,7 +43,7 @@ set PR_STOPMODE=java
 set PR_STOPCLASS=%JETTY_START_CLASS%
 set PR_STOPPARAMS=-DSTOP.KEY="%STOPKEY%";-DSTOP.PORT=%STOPPORT%;-DSTOP.WAIT=10;--stop;
  
-%PR_INSTALL% //IS/%SERVICE_NAME% ^
+"%PR_INSTALL%" //IS/%SERVICE_NAME% ^
   --DisplayName="%SERVICE_NAME%" ^
   --Install="%PR_INSTALL%" ^
   --Startup="%PR_STARTUP%" ^
@@ -62,7 +69,7 @@ set PR_STOPPARAMS=-DSTOP.KEY="%STOPKEY%";-DSTOP.PORT=%STOPPORT%;-DSTOP.WAIT=10;-
 if not errorlevel 1 goto installed
 echo Failed to install "%SERVICE_NAME%" service.  Refer to log in %PR_LOGPATH%
 goto end
- 
+
 :installed
 echo The Service "%SERVICE_NAME%" has been installed
  

@@ -5,9 +5,6 @@
             <Component Id="install.bat" Guid="*">
                 <File Id="install.bat" KeyPath="yes" Source="$(var.SolrSrc)\install.bat" />
             </Component>
-            <Component Id="prunmgr.exe" Guid="*">
-                <File Id="prunmgr.exe" KeyPath="yes" Source="$(var.SolrSrc)\prunmgr.exe" />
-            </Component>
             <Component Id="prunsrv_32.exe" Guid="*">
                 <File Id="prunsrv_32.exe" KeyPath="yes" Source="$(var.SolrSrc)\prunsrv_32.exe" />
             </Component>
@@ -16,6 +13,9 @@
             </Component>
             <Component Id="README.txt" Guid="*">
                 <File Id="README.txt" KeyPath="yes" Source="$(var.SolrSrc)\README.txt" />
+            </Component>
+            <Component Id="SolrServicew.exe" Guid="*">
+                <File Id="SolrServicew.exe" KeyPath="yes" Source="$(var.SolrSrc)\SolrServicew.exe" />
             </Component>
             <Component Id="start.jar" Guid="*">
                 <File Id="start.jar" KeyPath="yes" Source="$(var.SolrSrc)\start.jar" />
@@ -100,17 +100,8 @@
                 </Component>
             </Directory>
             <Directory Id="solr" Name="solr">
-                <Component Id="_.DS_Store" Guid="*">
-                    <File Id="_.DS_Store" KeyPath="yes" Source="$(var.SolrSrc)\solr\.DS_Store" />
-                </Component>
                 <Directory Id="collection1" Name="collection1">
-                    <Component Id="_.DS_Store_1" Guid="*">
-                        <File Id="_.DS_Store_1" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\.DS_Store" />
-                    </Component>
                     <Directory Id="conf" Name="conf">
-                        <Component Id="_.DS_Store_2" Guid="*">
-                            <File Id="_.DS_Store_2" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\.DS_Store" />
-                        </Component>
                         <Component Id="currency.xml" Guid="*">
                             <File Id="currency.xml" KeyPath="yes" Source="$(var.SolrSrc)\solr\collection1\conf\currency.xml" />
                         </Component>
@@ -282,10 +273,10 @@
     <Fragment>
         <ComponentGroup Id="cgSolrGroup">
             <ComponentRef Id="install.bat" />
-            <ComponentRef Id="prunmgr.exe" />
             <ComponentRef Id="prunsrv_32.exe" />
             <ComponentRef Id="prunsrv_64.exe" />
             <ComponentRef Id="README.txt" />
+            <ComponentRef Id="SolrServicew.exe" />
             <ComponentRef Id="start.jar" />
             <ComponentRef Id="solr_jetty_context.xml" />
             <ComponentRef Id="create_solrtest.keystore.sh" />
@@ -310,9 +301,6 @@
             <ComponentRef Id="slf4j_api_1.7.6.jar" />
             <ComponentRef Id="slf4j_log4j12_1.7.6.jar" />
             <ComponentRef Id="log4j.properties" />
-            <ComponentRef Id="_.DS_Store" />
-            <ComponentRef Id="_.DS_Store_1" />
-            <ComponentRef Id="_.DS_Store_2" />
             <ComponentRef Id="currency.xml" />
             <ComponentRef Id="elevate.xml" />
             <ComponentRef Id="mapping_FoldToASCII.txt" />
