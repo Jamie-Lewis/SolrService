@@ -17,6 +17,12 @@
       <Custom Action="caServiceRegister_Cmd" After="CostFinalize" />
       <Custom Action="caServiceRegister" After="InstallFiles" Overridable="yes">NOT Installed</Custom>
     </InstallExecuteSequence>
+
+    <!-- Check some requirements ONLY on "install", but not on modify or uninstall. -->
+    <Property Id="JAVA_CURRENT_VERSION">
+      <RegistrySearch Id="JRE_CURRENT_VERSION_REGSEARCH" Root="HKLM" Key="SOFTWARE\JavaSoft\Java Runtime Environment" Name="CurrentVersion" Type="raw"/>
+    </Property>
+    <Condition Message="Java Runtime Environment is not installed or outdated. Please install Oracle JRE 1.7 or later."><![CDATA[Installed OR (JAVA_CURRENT_VERSION >= "1.7")]]></Condition>
 	</Product>
 
 	<Fragment>

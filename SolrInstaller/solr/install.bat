@@ -13,6 +13,15 @@ set STOPPORT=50001
  
 set PR_INSTALL=%DATAPATH%\SolrService.exe
  
+@REM Finding JAVA_HOME
+IF NOT DEFINED JAVA_HOME (
+  echo "Inspecting registry for JAVA_HOME"
+  FOR /F "tokens=2*" %%a IN ('REG QUERY "HKLM\Software\JavaSoft\Java Runtime Environment" /v CurrentVersion') DO set "CurVer=%%b"
+  ECHO Found %CurVer%
+
+  FOR /F "tokens=2*" %%a IN ('REG QUERY "HKEY_LOCAL_MACHINE\SOFTWARE\JavaSoft\Java Runtime Environment\%CurVer%" /v JavaHome') DO set "JAVA_HOME=%%b"
+  ECHO Setting %JAVA_HOME%
+)
 
 @REM Service Log Configuration
 set PR_LOGPREFIX=%SERVICE_NAME%
