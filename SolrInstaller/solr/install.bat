@@ -18,6 +18,7 @@ set PR_INSTALL=%DATAPATH%\SolrService.exe
 @REM Finding JAVA_HOME
 IF NOT DEFINED JAVA_HOME goto findjava
 :javafound
+IF NOT DEFINED JAVA_HOME goto errored
 
 @REM Service Log Configuration
 set PR_LOGPREFIX=%SERVICE_NAME%
@@ -72,7 +73,9 @@ set PR_STOPPARAMS=-DSTOP.KEY="%STOPKEY%";-DSTOP.PORT=%STOPPORT%;-DSTOP.WAIT=10;-
   --StopParams="%PR_STOPPARAMS%"
  
 if not errorlevel 1 goto installed
+:errored
 echo Failed to install "%SERVICE_NAME%" service.  Refer to log in %PR_LOGPATH%
+exit /B 1
 goto end
 
 
