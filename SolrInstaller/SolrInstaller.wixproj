@@ -19,6 +19,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <OutputPath>bin\$(Configuration)$(Platform)\</OutputPath>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <DefineConstants>SolrSrc=solr</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
     <DefineConstants>Debug;SolrSrc=solr</DefineConstants>
@@ -28,6 +29,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
     <OutputPath>bin\$(Configuration)$(Platform)\</OutputPath>
     <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
+    <DefineConstants>SolrSrc=solr</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Product.wxs" />
