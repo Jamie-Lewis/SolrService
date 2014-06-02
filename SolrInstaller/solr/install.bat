@@ -1,4 +1,5 @@
 @echo off
+SETLOCAL
 
 set DATAPATH=%~dp0
 IF %DATAPATH:~-1%==\ SET DATAPATH=%DATAPATH:~0,-1%
@@ -12,16 +13,11 @@ set STOPKEY=secret
 set STOPPORT=50001
  
 set PR_INSTALL=%DATAPATH%\SolrService.exe
+
  
 @REM Finding JAVA_HOME
-IF NOT DEFINED JAVA_HOME (
-  echo "Inspecting registry for JAVA_HOME"
-  FOR /F "tokens=2*" %%a IN ('REG QUERY "HKLM\Software\JavaSoft\Java Runtime Environment" /v CurrentVersion') DO set "CurVer=%%b"
-  ECHO Found %CurVer%
-
-  FOR /F "tokens=2*" %%a IN ('REG QUERY "HKEY_LOCAL_MACHINE\SOFTWARE\JavaSoft\Java Runtime Environment\%CurVer%" /v JavaHome') DO set "JAVA_HOME=%%b"
-  ECHO Setting %JAVA_HOME%
-)
+IF NOT DEFINED JAVA_HOME goto findjava
+:javafound
 
 @REM Service Log Configuration
 set PR_LOGPREFIX=%SERVICE_NAME%
@@ -79,7 +75,16 @@ if not errorlevel 1 goto installed
 echo Failed to install "%SERVICE_NAME%" service.  Refer to log in %PR_LOGPATH%
 goto end
 
+
+:findjava
+echo Inspecting registry for Java versiona and JAVA_HOME
+FOR /F "tokens=2*" %%a IN ('REG QUERY "HKLM\Software\JavaSoft\Java Runtime Environment" /v CurrentVersion') DO set "CurVer=%%b"
+ECHO Found version %CurVer%
+FOR /F "tokens=2*" %%a IN ('REG QUERY "HKEY_LOCAL_MACHINE\SOFTWARE\JavaSoft\Java Runtime Environment\%CurVer%" /v JavaHome') DO set "JAVA_HOME=%%b"
+ECHO Setting JAVA_HOME=%JAVA_HOME%
+goto javafound
+
 :installed
 echo The Service "%SERVICE_NAME%" has been installed
- 
+
 :end
